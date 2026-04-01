@@ -29,42 +29,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "boldvoice-case-study",
-    type: "project",
-    title: "BoldVoice",
-    subtitle: "Product Case Study — Accent Training App",
-    summary:
-      "Product teardown and 3 actionable improvement suggestions for BoldVoice (YC S21), an AI-powered accent training app with 5M+ downloads.",
-    role: "Product Analysis",
-    timeline: "2026",
-    tags: ["Product Teardown", "UX Analysis", "AI/ML", "Speech Tech"],
-    roleTags: ["Product Thinking", "UX Analysis", "Data-Driven"],
-    keyContribution: "3 actionable improvements based on user research and app analysis",
-    thumbnail: {
-      gradient: "from-indigo-600/30 to-violet-500/30",
-      emoji: "🗣️",
-      image: "/images/projects/boldvoice.png",
-    },
-    website: "https://www.boldvoice.com",
-    sections: {
-      problem:
-        "BoldVoice (YC S21) is an accent training app that helps non-native English speakers speak clearly and confidently. It combines video lessons from Hollywood accent coaches with real-time AI speech feedback. 5M+ downloads, 4.8 stars, featured on Forbes and TechCrunch. I downloaded the app, went through onboarding, assessment, and practice sessions to identify opportunities for improvement.",
-      role:
-        "Independent product analysis — onboarding walkthrough, assessment completion, practice sessions, user review analysis, and competitive evaluation.",
-      process: [
-        "Went through the full onboarding: value prop screens (Hollywood coaches, AI feedback, SpeechScan), expectation-setting timeline (Week 1 → Year 1+), pricing comparison vs 1:1 coaching ($150/yr vs $150-300/hr), and a transparent 7-day trial flow with Day 5 reminder and opt-out toggle.",
-        "Completed the 20-sentence initial assessment. Scored 90% overall. The results screen shows Top 3 Strengths (N: 94%, K: 93%, NG: 93%) and Top 3 Focus Areas (TH: 58%, Z: 84%, OH vs OW: 87%) — color-coded green/yellow/red. Sound-level highlighting in sentences shows exactly which letters were mispronounced.",
-        "Went through the practice session: 'Challenge Words' targeting my weak sounds. Each sentence gets a circular score (87-99%), with 'You' vs 'Coach' audio comparison buttons. The AI flags specific sounds in red/yellow within the sentence text.",
-        "Analyzed the post-assessment flow: SpeechScan identifies focus areas, locks additional focus areas behind '3 more days of practice' — a smart retention hook. The skill tree (1-6) unlocks progressively, creating a Duolingo-style progression system.",
-        "Reviewed 70,000+ App Store reviews (4.8 stars) to identify recurring pain points, what users love, and feature gaps.",
-      ],
-      outcome:
-        "Three things I'd change:\n\n1. Show a before/after audio comparison after each session. Scores are helpful, but hearing your own improvement is way more motivating. The compare feature already exists — it's just buried. Surfacing it at the end of every session would make progress feel real.\n\n2. Add a 'read and practice' mode in AI Chat. Right now it's free conversation, but people naturally avoid sounds they're bad at. If my TH scored 58%, give me sentences packed with TH sounds to read out loud — 'The weather this Thursday will be thirty degrees.' The SpeechScan data is already there, just use it to generate targeted sentences.\n\n3. The onboarding question 'How often do you speak English?' should let you pick multiple contexts instead of one. Most people use English for work and socially, and the stakes are different in each. Multi-select would let the app personalize better — including which Role-Play scenarios to show first.",
-      learned:
-        "I went through App Store reviews to see what real users say. A few patterns came up repeatedly:\n\nWhat users love — the sound-level feedback and the compare/record feature. These are the core of the product and people come back for them.\n\nCommon frustration — the AI sometimes keeps flagging the same sound as wrong even after the user has improved. It feels like hitting a wall, and I can see how that kills momentum.\n\nFeature gap — several users asked for the ability to choose their own words to practice, instead of only working through coach-selected ones.\n\nOverall the product is strong. 4.8 stars and 5M downloads speaks for itself. The gaps are small but the kind that affect whether someone practices daily or drops off.",
-    },
-  },
-  {
     slug: "selah",
     type: "project",
     title: "Selah",
@@ -99,6 +63,42 @@ export const projects: Project[] = [
         "~100 weekly active users with strong engagement and retention. Users expressed willingness to continue using the product if launched. Qualitative feedback highlighted the trust and authenticity of the experience. Now preparing for launch with monetization.",
       learned:
         "The hardest part was designing a product that handles sensitive emotional experiences while maintaining trust and authenticity. You can't fake empathy in UX — every word, every screen transition, every notification matters when someone is vulnerable. I also learned that the best product decisions came from going narrow: targeting a specific community instead of building for everyone made the product stronger, not weaker.",
+    },
+  },
+  {
+    slug: "boldvoice-case-study",
+    type: "project",
+    title: "BoldVoice",
+    subtitle: "Product Case Study — Accent Training App",
+    summary:
+      "Product teardown and 3 actionable improvement suggestions for BoldVoice (YC S21), an AI-powered accent training app with 5M+ downloads.",
+    role: "Product Analysis",
+    timeline: "2026",
+    tags: ["Product Teardown", "UX Analysis", "AI/ML", "Speech Tech"],
+    roleTags: ["Product Thinking", "UX Analysis", "Data-Driven"],
+    keyContribution: "3 actionable improvements based on user research and app analysis",
+    thumbnail: {
+      gradient: "from-indigo-600/30 to-violet-500/30",
+      emoji: "🗣️",
+      image: "/images/projects/boldvoice.png",
+    },
+    website: "https://www.boldvoice.com",
+    sections: {
+      problem:
+        "BoldVoice (YC S21) is an accent training app that helps non-native English speakers speak clearly and confidently. It combines video lessons from Hollywood accent coaches with real-time AI speech feedback. 5M+ downloads, 4.8 stars, featured on Forbes and TechCrunch. I downloaded the app, went through onboarding, assessment, and practice sessions to identify opportunities for improvement.",
+      role:
+        "Independent product analysis — onboarding walkthrough, assessment completion, practice sessions, user review analysis, and competitive evaluation.",
+      process: [
+        "Went through the full onboarding: value prop screens (Hollywood coaches, AI feedback, SpeechScan), expectation-setting timeline (Week 1 → Year 1+), pricing comparison vs 1:1 coaching ($150/yr vs $150-300/hr), and a transparent 7-day trial flow with Day 5 reminder and opt-out toggle.",
+        "Completed the 20-sentence initial assessment. Scored 90% overall. The results screen shows Top 3 Strengths (N: 94%, K: 93%, NG: 93%) and Top 3 Focus Areas (TH: 58%, Z: 84%, OH vs OW: 87%) — color-coded green/yellow/red. Sound-level highlighting in sentences shows exactly which letters were mispronounced.",
+        "Went through the practice session: 'Challenge Words' targeting my weak sounds. Each sentence gets a circular score (87-99%), with 'You' vs 'Coach' audio comparison buttons. The AI flags specific sounds in red/yellow within the sentence text.",
+        "Analyzed the post-assessment flow: SpeechScan identifies focus areas, locks additional focus areas behind '3 more days of practice' — a smart retention hook. The skill tree (1-6) unlocks progressively, creating a Duolingo-style progression system.",
+        "Reviewed App Store reviews (4.8 stars) to identify recurring pain points, what users love, and feature gaps.",
+      ],
+      outcome:
+        "Three things I'd change:\n\n1. Show a before/after audio comparison after each session. Scores are helpful, but hearing your own improvement is way more motivating. The compare feature already exists — it's just buried. Surfacing it at the end of every session would make progress feel real.\n\n2. Add a 'read and practice' mode in AI Chat. Right now it's free conversation, but people naturally avoid sounds they're bad at. If my TH scored 58%, give me sentences packed with TH sounds to read out loud — 'The weather this Thursday will be thirty degrees.' The SpeechScan data is already there, just use it to generate targeted sentences.\n\n3. The onboarding question 'How often do you speak English?' should let you pick multiple contexts instead of one. Most people use English for work and socially, and the stakes are different in each. Multi-select would let the app personalize better — including which Role-Play scenarios to show first.",
+      learned:
+        "I went through App Store reviews to see what real users say. A few patterns came up repeatedly:\n\nWhat users love — the sound-level feedback and the compare/record feature. These are the core of the product and people come back for them.\n\nCommon frustration — the AI sometimes keeps flagging the same sound as wrong even after the user has improved. It feels like hitting a wall, and I can see how that kills momentum.\n\nFeature gap — several users asked for the ability to choose their own words to practice, instead of only working through coach-selected ones.\n\nOverall the product is strong. 4.8 stars and 5M downloads speaks for itself. The gaps are small but the kind that affect whether someone practices daily or drops off.",
     },
   },
   {
@@ -181,7 +181,7 @@ export const projects: Project[] = [
       "Ran user interviews and surveys, built a waitlist of ~100 people, and piloted with 5 real users. Built a cross-platform productivity app across Flutter mobile, native desktop (C++/Swift), and Next.js web.",
     role: "Product Owner & Builder",
     timeline: "2024 — 2025",
-    tags: ["Flutter", "Dart", "TypeScript", "Next.js", "C++", "Swift"],
+    tags: ["Flutter", "Dart", "TypeScript", "Next.js", "AWS", "Supabase", "PostgreSQL"],
     roleTags: ["Solo", "Product", "User Research", "Mobile", "Desktop"],
     keyContribution: "100 waitlist signups, 5 pilot users, 3-platform product built solo",
     thumbnail: {
@@ -200,12 +200,13 @@ export const projects: Project[] = [
         "Recruited 5 pilot users from the waitlist and ran hands-on testing sessions, iterating on the core experience based on real usage patterns.",
         "Built the mobile app with Flutter/Dart for cross-platform task and goal management with a clean, friction-free daily interface.",
         "Developed a native desktop activity tracker (C++/Swift) that reads window metadata to automatically log what users work on.",
-        "Connected desktop tracking to the mobile app for unified productivity insights across devices.",
+        "Initially built the backend on AWS — Amplify for auth, Lambda for serverless functions, RDS PostgreSQL for the database. Noticed costs climbing: the always-on RDS instance was charging even with near-zero traffic. Investigated options — Aurora Serverless for scale-to-zero, smaller instance types, reserved pricing — but concluded that for 5 pilot users, optimizing AWS was itself over-engineering.",
+        "Migrated to Supabase instead. Same PostgreSQL, so the schema carried over cleanly. Auth moved from Amplify to Supabase Auth. The decision wasn't about AWS being bad — it was about matching infrastructure to the current stage. AWS makes sense at scale; Supabase made sense at 5 users.",
       ],
       outcome:
-        "Validated product-market fit through user research before building. Shipped a working cross-platform tool spanning mobile (Flutter), desktop (native C++/Swift), and web (Next.js). Pilot users reported the daily tracking flow took under 30 seconds.",
+        "Validated product-market fit through user research before building. Shipped a working cross-platform tool spanning mobile (Flutter), desktop (native C++/Swift), and web (Next.js). Migrated from AWS to Supabase, cutting infrastructure costs to near-zero while keeping the same PostgreSQL schema. Pilot users reported the daily tracking flow took under 30 seconds.",
       learned:
-        "I kept adding features to make the product stand out — desktop tracking, cross-device sync, analytics dashboards. But pilot users told me they just wanted the core daily flow to be fast and simple. I ended up removing most of what I'd built and keeping only the main experience. Shipping less was the harder and better decision.",
+        "Two lessons. First — I kept adding features to stand out, but pilot users just wanted the core flow to be fast and simple. I removed most of what I'd built. Shipping less was harder and better. Second — infrastructure decisions are product decisions. AWS wasn't wrong, it was wrong for the stage. Knowing when to optimize vs. when to switch is a skill I use in every project now.",
     },
   },
 ];

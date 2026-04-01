@@ -11,14 +11,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Jeonghwan Kim | Product Manager — Product, Engineering, UX",
+  title: "Jeonghwan Kim | Product Engineer — Product, Engineering, UX",
   description:
-    "Product Manager with an engineering background. I speak both product and code. Experience across AI legal tech, mental health apps, productivity tools, and neuroscience research.",
+    "Product Engineer with an engineering background. I speak both product and code. Experience across AI legal tech, mental health apps, productivity tools, and neuroscience research.",
   openGraph: {
-    title: "Jeonghwan Kim | Product Manager",
+    title: "Jeonghwan Kim | Product Engineer",
     description:
-      "Product Manager with an engineering background. I bridge product, engineering, and UX.",
-    siteName: "Jeonghwan Kim — Product Manager",
+      "Product Engineer with an engineering background. I bridge product, engineering, and UX.",
+    siteName: "Jeonghwan Kim — Product Engineer",
     type: "website",
     locale: "en_US",
   },
@@ -31,7 +31,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Jeonghwan Kim",
-  jobTitle: "Product Manager",
+  jobTitle: "Product Engineer",
   url: "https://jeonghwankim.dev",
   knowsAbout: [
     "Product Management",
