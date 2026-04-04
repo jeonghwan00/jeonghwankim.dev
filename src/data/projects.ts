@@ -5,6 +5,7 @@ export interface Project {
   type: ProjectType;
   title: string;
   subtitle: string;
+  caseStudyTitle?: string;
   summary: string;
   role: string;
   timeline: string;
@@ -18,6 +19,8 @@ export interface Project {
   };
   github?: string;
   website?: string;
+  metrics?: { value: string; label: string }[];
+  quote?: { text: string; translation?: string; source: string };
   sections: {
     problem: string;
     role: string;
@@ -33,36 +36,47 @@ export const projects: Project[] = [
     type: "project",
     title: "Selah",
     subtitle: "AI-Powered CBT & Spiritual Wellness App",
+    caseStudyTitle: "Building a mental health app for a community that already knew how to support each other",
     summary:
-      "Started as a personal tool for my girlfriend, grew to ~100 weekly active users through church community engagement. Uses the Claude API for cognitive distortion analysis. Preparing for launch with monetization.",
+      "Solo product, 0 → 90+ active users. React Native · Claude API · Supabase",
     role: "Product Owner & Builder",
     timeline: "2024 — Present",
     website: "https://selah-co.com",
-    tags: ["React Native", "Expo", "TypeScript", "Claude API", "Supabase", "PostgreSQL"],
+    tags: ["React Native + Expo", "Supabase / PostgreSQL", "Claude API", "AI-powered thought analysis", "Community-driven growth"],
     roleTags: ["Solo", "Product", "AI Integration", "User Research", "Community"],
-    keyContribution: "0 → 100 active test users through community-driven growth. Preparing for launch.",
+    keyContribution: "0 → 90+ active users through community-driven growth. Preparing for launch.",
     thumbnail: {
       gradient: "from-purple-600/30 to-pink-500/30",
       emoji: "🧠",
       image: "/images/projects/selah.jpg",
     },
+    metrics: [
+      { value: "90+", label: "Active users, community-grown" },
+      { value: "~100%", label: "7-day retention on prayer room — users return daily to update and respond to requests" },
+      { value: "Now", label: "Preparing for launch with monetization" },
+    ],
+    quote: {
+      text: "핸드폰을 보다가 멈추고 기도하게 된 경험은 처음인 것 같다. 너무 좋았다.",
+      translation: "I stopped scrolling and actually prayed for the first time in a while. It felt really good.",
+      source: "User feedback during church pilot",
+    },
     sections: {
       problem:
-        "My girlfriend was going through a difficult time. CBT teaches that emotions are shaped not by events directly, but by the thoughts that interpret those events. I wanted to build something that could help her — and eventually others — identify cognitive distortions and reframe their thinking.",
+        "My girlfriend was going through a difficult time. CBT research shows emotions are shaped not by events directly, but by the thoughts that interpret them. I wanted to build something that could help her identify cognitive distortions and reframe her thinking — and eventually help others do the same.\n\nI built the first version for one user. Then I watched what happened when I handed it to more.",
       role:
-        "I designed, built, and grew the product entirely solo — product strategy, AI integration, UX design, React Native development, user research, and community engagement.",
+        "Entirely solo — product strategy, AI integration, UX design, React Native development, user research, and community engagement. No team, no budget, no runway.",
       process: [
-        "Built an initial CBT tool using the Claude API to guide users through identifying cognitive distortions and reframing negative thoughts. Used it together with my girlfriend as the first user.",
-        "A friend tried the app and said he'd actively use it as a product. Since he's a practicing Christian, I hypothesized that focusing on a specific audience — people seeking both emotional and spiritual support — would be stronger than building a broad mental health tool.",
-        "Integrated personalized Bible verse recommendations and redesigned the experience for users at the intersection of mental health and faith.",
-        "Engaged directly with church communities — observing how people share prayer requests and support each other weekly. Translated this into an anonymous 'prayer room' feature where users could share and support each other online.",
-        "Grew to ~100 weekly active users through community engagement and ran a small church pilot to validate the product in real-world settings.",
-        "Built the full stack: React Native + Expo frontend, Supabase/PostgreSQL backend, Claude API integration for AI-powered thought analysis.",
+        "Built an initial CBT tool using the Claude API to guide users through identifying cognitive distortions and reframing negative thoughts. Used it daily with my girlfriend as the first real user.",
+        "A Christian friend tried it and said he'd actively use it. That observation led to a hypothesis: targeting users at the intersection of mental health and faith would create a stronger, more specific product than a generic mental health tool.",
+        "Repositioned the product. Added personalized Bible verse recommendations and redesigned the experience around both emotional and spiritual support.",
+        "Embedded myself in church communities — observing how people share prayer requests and support each other weekly. Translated this into an anonymous prayer room where users could share and support each other online.",
+        "Analyzed retention across all features. Prayer room drove near-100% 7-day retention — community lock-in by design. Observed continued DB activity: users returned daily to update and respond to prayer requests. Cut every other feature and surfaced prayer room directly to the main navigation.",
+        "Grew to 90+ active users through community engagement and ran a church pilot to validate the product in a real-world setting. One removed feature is now being reinstated — users kept asking for it back.",
       ],
       outcome:
-        "~100 weekly active users with strong engagement and retention. Users expressed willingness to continue using the product if launched. Qualitative feedback highlighted the trust and authenticity of the experience. Now preparing for launch with monetization.",
+        "90+ active users with strong engagement and retention. Users expressed willingness to continue using the product if launched. Qualitative feedback highlighted genuine trust in the experience. Now preparing for launch with monetization.",
       learned:
-        "The hardest part was designing a product that handles sensitive emotional experiences while maintaining trust and authenticity. You can't fake empathy in UX — every word, every screen transition, every notification matters when someone is vulnerable. I also learned that the best product decisions came from going narrow: targeting a specific community instead of building for everyone made the product stronger, not weaker.",
+        "The hardest part was designing for vulnerable moments. You can't fake empathy in UX — every word, every screen transition, every notification matters when someone is in a difficult place. Trust is built or broken at the detail level.\n\nThe best product decisions came from going narrow. Targeting a specific community instead of building for everyone made the product stronger. The prayer room wasn't a feature I designed from scratch — it was something I saw already happening in real life, and built a digital version of it.",
     },
   },
   {

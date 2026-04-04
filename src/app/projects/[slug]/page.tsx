@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${project.title} — ${project.subtitle} | Jeonghwan`,
+    title: `${project.title} — ${project.subtitle} | Jeonghwan Kim`,
     description: project.summary,
   };
 }
@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: PageProps) {
     projectIndex < projects.length - 1 ? projects[projectIndex + 1] : null;
 
   return (
-    <div className="mx-auto max-w-3xl px-6 md:px-12 py-24">
+    <div className="mx-auto max-w-3xl px-6 md:px-12 py-24" style={{ backgroundColor: "#060e1a" }}>
       {/* Back link */}
       <Link
         href="/#projects"
@@ -50,19 +50,27 @@ export default async function ProjectPage({ params }: PageProps) {
       </Link>
 
       {/* Header */}
-      <div className="mt-8 space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight text-[#e2e8f0]">
-          {project.title}
-        </h1>
-        <p className="text-lg text-[#a0aec0]">{project.subtitle}</p>
+      <div className="mt-10">
+        <p className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">
+          Case Study — {project.title}
+        </p>
 
-        {/* Metadata row */}
-        <p className="text-sm text-[#a0aec0]">
-          {project.role} | {project.timeline}
+        {project.caseStudyTitle ? (
+          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[#e2e8f0] sm:text-4xl">
+            {project.caseStudyTitle}
+          </h1>
+        ) : (
+          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[#e2e8f0] sm:text-4xl">
+            {project.title}
+          </h1>
+        )}
+
+        <p className="mt-4 text-base text-[#a0aec0]">
+          {project.summary}
         </p>
 
         {/* External links */}
-        <div className="flex flex-wrap gap-4">
+        <div className="mt-4 flex flex-wrap gap-4">
           {project.website && (
             <a
               href={project.website}
@@ -71,77 +79,126 @@ export default async function ProjectPage({ params }: PageProps) {
               className="inline-flex items-center gap-1.5 text-sm font-mono text-[#64ffda] hover:underline"
             >
               Visit Website
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17l9.2-9.2M17 17V7H7" />
-              </svg>
-            </a>
-          )}
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-mono text-[#64ffda] hover:underline"
-            >
-              View on GitHub
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M7 17l9.2-9.2M17 17V7H7" />
               </svg>
             </a>
           )}
         </div>
+      </div>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+      {/* Divider */}
+      <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
+
+      {/* Problem */}
+      <section className="mt-10">
+        <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">Problem</h2>
+        <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-[#e2e8f0]/90">
+          {project.sections.problem}
+        </p>
+      </section>
+
+      <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
+
+      {/* My Role */}
+      <section className="mt-10">
+        <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">My Role</h2>
+        <p className="mt-4 text-base leading-relaxed text-[#e2e8f0]/90">
+          {project.sections.role}
+        </p>
+      </section>
+
+      <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
+
+      {/* Process — numbered steps */}
+      <section className="mt-10">
+        <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">Process</h2>
+        <ol className="mt-6 space-y-6">
+          {project.sections.process.map((step, i) => (
+            <li key={i} className="flex gap-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(100,255,218,0.2)] text-sm text-[#a0aec0]">
+                {i + 1}
+              </span>
+              <p className="pt-1 text-base leading-relaxed text-[#e2e8f0]/90">
+                {step}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* User quote */}
+      {project.quote && (
+        <div className="mt-10 rounded-lg border-l-2 border-[#64ffda] bg-[rgba(100,255,218,0.05)] px-6 py-5">
+          <p className="text-lg leading-relaxed text-[#e2e8f0]">
+            &ldquo;{project.quote.text}&rdquo;
+          </p>
+          {project.quote.translation && (
+            <p className="mt-2 text-sm text-[#a0aec0]">
+              — {project.quote.source} (&ldquo;{project.quote.translation}&rdquo;)
+            </p>
+          )}
+          {!project.quote.translation && (
+            <p className="mt-2 text-sm text-[#a0aec0]">
+              — {project.quote.source}
+            </p>
+          )}
+        </div>
+      )}
+
+      <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
+
+      {/* Outcomes — metric cards */}
+      {project.metrics && (
+        <section className="mt-10">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">Outcomes</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {project.metrics.map((metric, i) => (
+              <div
+                key={i}
+                className="rounded-lg border border-[rgba(100,255,218,0.1)] bg-[rgba(100,255,218,0.03)] p-5"
+              >
+                <p className="text-2xl font-bold text-[#e2e8f0]">{metric.value}</p>
+                <p className="mt-1 text-sm text-[#a0aec0]">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Outcome text (for projects without metrics) */}
+      {!project.metrics && (
+        <section className="mt-10">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">Outcome</h2>
+          <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-[#e2e8f0]/90">
+            {project.sections.outcome}
+          </p>
+        </section>
+      )}
+
+      <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
+
+      {/* Stack */}
+      <section className="mt-10">
+        <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">Stack</h2>
+        <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <Badge key={tag} label={tag} />
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Case study sections */}
-      <div className="mt-16 space-y-12">
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#e2e8f0]">Problem</h2>
-          <p className="leading-relaxed text-[#a0aec0]">
-            {project.sections.problem}
-          </p>
-        </section>
+      <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#e2e8f0]">My Role</h2>
-          <p className="leading-relaxed text-[#a0aec0]">
-            {project.sections.role}
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#e2e8f0]">Process</h2>
-          <ul className="list-disc space-y-2 pl-6 text-[#a0aec0]">
-            {project.sections.process.map((step, i) => (
-              <li key={i} className="leading-relaxed">
-                {step}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#e2e8f0]">Outcome</h2>
-          <p className="whitespace-pre-line leading-relaxed text-[#a0aec0]">
-            {project.sections.outcome}
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#e2e8f0]">
-            What I Learned
-          </h2>
-          <p className="whitespace-pre-line leading-relaxed text-[#a0aec0]">
+      {/* What I Learned */}
+      <section className="mt-10">
+        <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">What I Learned</h2>
+        <div className="mt-6 rounded-lg bg-[rgba(100,255,218,0.03)] p-6">
+          <p className="whitespace-pre-line text-base leading-relaxed text-[#e2e8f0]/90">
             {project.sections.learned}
           </p>
-        </section>
-      </div>
+        </div>
+      </section>
 
       {/* Prev / Next navigation */}
       <div className="mt-16 flex items-center justify-between border-t border-[rgba(100,255,218,0.1)] pt-8">
@@ -150,7 +207,7 @@ export default async function ProjectPage({ params }: PageProps) {
             href={`/projects/${prev.slug}`}
             className="text-sm text-[#a0aec0] transition-colors hover:text-[#64ffda]"
           >
-            &larr; Previous: {prev.title}
+            &larr; {prev.title}
           </Link>
         ) : (
           <span />
@@ -161,7 +218,7 @@ export default async function ProjectPage({ params }: PageProps) {
             href={`/projects/${next.slug}`}
             className="text-sm text-[#a0aec0] transition-colors hover:text-[#64ffda]"
           >
-            Next: {next.title} &rarr;
+            {next.title} &rarr;
           </Link>
         ) : (
           <span />
