@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: PageProps) {
     projectIndex < projects.length - 1 ? projects[projectIndex + 1] : null;
 
   return (
-    <div className="mx-auto max-w-3xl px-6 md:px-12 py-24" style={{ backgroundColor: "#060e1a" }}>
+    <div className="mx-auto max-w-3xl px-6 md:px-12 py-24" style={{ backgroundColor: "rgba(6, 14, 26, 0.85)" }}>
       {/* Back link */}
       <Link
         href="/#projects"

@@ -57,7 +57,7 @@ export const projects: Project[] = [
     ],
     quote: {
       text: "핸드폰을 보다가 멈추고 기도하게 된 경험은 처음인 것 같다. 너무 좋았다.",
-      translation: "I stopped scrolling and actually prayed for the first time in a while. It felt really good.",
+      translation: "This was the first time I ever found myself praying while on my phone. It felt really good.",
       source: "User feedback during church pilot",
     },
     sections: {
