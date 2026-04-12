@@ -35,7 +35,7 @@ export default function AboutSection() {
             That overlap is where I do my best work.
           </p>
           <p className="text-[#a0aec0]">
-            Seoul National University · Neuroscience
+            Georgia Institute of Technology · Computer Science
           </p>
         </div>
       </SectionFadeIn>
