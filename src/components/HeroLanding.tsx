@@ -24,7 +24,7 @@ export default function HeroLanding() {
           {siteConfig.title}
         </h2>
         <p className="mt-2 text-[#a0aec0]">
-          I speak both product and code.
+          I find the market, build the product, and ship the code.
         </p>
 
         {/* Social links */}

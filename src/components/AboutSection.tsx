@@ -11,7 +11,7 @@ export default function AboutSection() {
           <p>
             I care about{" "}
             <span className="text-[#e2e8f0]">people</span>.
-            I started in neuroscience research — designing a game
+            I started in neuroscience research, designing a game
             that helps reduce depressive symptoms through brainwave regulation.
             That experience taught me that{" "}
             <span className="text-[#e2e8f0]">
@@ -19,18 +19,20 @@ export default function AboutSection() {
             </span>.
           </p>
           <p>
-            Now I build products with that same mindset.
-            I lead{" "}
-            <span className="text-[#e2e8f0]">user research</span>,{" "}
-            <span className="text-[#e2e8f0]">roadmaps</span>, and{" "}
-            <span className="text-[#e2e8f0]">prioritization</span> —
-            and I understand the technical trade-offs
-            because I&apos;ve built every product I&apos;ve managed.
+            Now I build products end-to-end.
+            I do the{" "}
+            <span className="text-[#e2e8f0]">market research</span>,
+            make the{" "}
+            <span className="text-[#e2e8f0]">product decisions</span>,
+            write the{" "}
+            <span className="text-[#e2e8f0]">code</span>,
+            and ship it myself.
+            Every project in my portfolio was built by me, not just managed.
           </p>
           <p>
-            I bridge engineering and business.
-            I talk to users, write specs engineers respect,
-            and make decisions without needing a translator.
+            I think about business when I&apos;m engineering,
+            and I think about engineering when I&apos;m making product decisions.
+            That overlap is where I do my best work.
           </p>
           <p className="text-[#a0aec0]">
             Seoul National University · Neuroscience
