@@ -110,21 +110,47 @@ export default async function ProjectPage({ params }: PageProps) {
 
       <hr className="mt-10 border-[rgba(100,255,218,0.1)]" />
 
-      {/* Process — numbered steps */}
+      {/* Process */}
       <section className="mt-10">
         <h2 className="text-xs font-bold uppercase tracking-widest text-[#a0aec0]">Process</h2>
-        <ol className="mt-6 space-y-6">
-          {project.sections.process.map((step, i) => (
-            <li key={i} className="flex gap-4">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(100,255,218,0.2)] text-sm text-[#a0aec0]">
-                {i + 1}
-              </span>
-              <p className="pt-1 text-base leading-relaxed text-[#e2e8f0]/90">
-                {step}
-              </p>
-            </li>
-          ))}
-        </ol>
+        {Array.isArray(project.sections.process) && project.sections.process.length > 0 && typeof project.sections.process[0] === 'string' ? (
+          /* Flat list of steps */
+          <ol className="mt-6 space-y-6">
+            {(project.sections.process as string[]).map((step, i) => (
+              <li key={i} className="flex gap-4">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(100,255,218,0.2)] text-sm text-[#a0aec0]">
+                  {i + 1}
+                </span>
+                <p className="pt-1 text-base leading-relaxed text-[#e2e8f0]/90">
+                  {step}
+                </p>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          /* Grouped sections (Product / UX / Engineering) */
+          <div className="mt-6 space-y-10">
+            {(project.sections.process as { label: string; steps: string[] }[]).map((group, gi) => (
+              <div key={gi}>
+                <h3 className="text-sm font-semibold text-[#64ffda] tracking-wide mb-4">
+                  {group.label}
+                </h3>
+                <ol className="space-y-5">
+                  {group.steps.map((step, si) => (
+                    <li key={si} className="flex gap-4">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[rgba(100,255,218,0.15)] text-xs text-[#a0aec0]">
+                        {si + 1}
+                      </span>
+                      <p className="pt-0.5 text-base leading-relaxed text-[#e2e8f0]/90">
+                        {step}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* User quote */}

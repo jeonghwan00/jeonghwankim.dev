@@ -24,7 +24,7 @@ export interface Project {
   sections: {
     problem: string;
     role: string;
-    process: string[];
+    process: string[] | { label: string; steps: string[] }[];
     outcome: string;
     learned: string;
   };
@@ -32,17 +32,81 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "soodori",
+    type: "project",
+    title: "Soodori (수돌이)",
+    subtitle: "BaZi AI Fortune-Telling Web App",
+    caseStudyTitle: "Two people close to me were each paying a lot for different fortune-telling apps. I thought I could build a better one.",
+    summary:
+      "Spotted a real market from watching people around me pay for saju apps. Built and shipped a multilingual AI fortune-telling product solo in under a week. Then cut the bundle size by 89%.",
+    role: "Product Owner & Builder",
+    timeline: "2025 — Present",
+    website: "https://soodori.vercel.app",
+    tags: ["Next.js 14", "TypeScript", "LLM API", "Supabase", "Tailwind CSS", "Vercel"],
+    roleTags: ["Solo", "Product", "Full-Stack", "Performance", "AI Integration"],
+    keyContribution: "Market validation → build → ship → optimize, all solo in under two weeks",
+    thumbnail: {
+      gradient: "from-amber-600/30 to-red-500/30",
+      emoji: "🔮",
+      image: "/images/projects/soodori.png",
+    },
+    metrics: [
+      { value: "10", label: "Organic signups on day one via word of mouth" },
+      { value: "-89%", label: "Client JS reduced: 415 kB → 45.5 kB" },
+      { value: "3", label: "Languages supported: Korean, English, Chinese" },
+    ],
+    sections: {
+      problem:
+        "Two people close to me were each paying a lot for different saju (四柱, Chinese astrology) services. I watched them use it, and I kept hearing friends discuss their charts like it was the most important thing in the world. That told me this wasn't a niche hobby. People take this seriously, and they pay for it.\n\nI looked at what's out there. Posteller (포스텔러, 860M+ cumulative users) gives you pre-written readings based on your birth info. Useful, but there's no conversation. You can't ask follow-ups or go deeper on something specific. Jeomsin (점신) connects you with real fortune tellers over the phone, and they make money the longer the call goes. It works, but it's expensive, awkward for a lot of people, and you're at the mercy of whoever picks up.\n\nThen there's ChatGPT and general-purpose LLMs. People try them for saju readings, but they can't even calculate the four pillars correctly. They hallucinate chart data and have no understanding of the actual calendar system (만세력) behind it.\n\nThat was the gap. Combine the accuracy of a properly tuned calculation engine with the conversational depth of AI, in a UX where you don't have to talk to a stranger on the phone. Just type and get real answers about your actual chart.",
+      role:
+        "Entirely solo. Market research, product decisions, full-stack development, AI prompt engineering, domain-specific calculation logic, performance optimization, and deployment.",
+      process: [
+        {
+          label: "Product",
+          steps: [
+            "Studied how the existing players monetize. Posteller charges per reading. Jeomsin connects you with fortune tellers over the phone and makes money the longer the call goes. Both profit from volume and time spent. My product is fundamentally different: conversational AI where users ask follow-ups and come back with new questions. I set up a freemium model (5 free conversations, then subscription tiers) to test willingness to pay before investing in growth.",
+            "Built the core loop: birth info input, four pillars calculation, then AI chat. The key differentiator is the system prompt. I spent more time on prompt engineering than on the UI. The AI references the user's specific elements, explains jargon in plain language, and builds on previous answers. It feels like talking to someone who actually read your chart, not a template.",
+            "Launched with zero marketing budget. Shared it with a few friends first, and they started spreading it through word of mouth. I built a referral system where users can share a referral code with friends even without paying, which lowered the barrier to invite others. 10 users signed up on day one, all organic.",
+          ],
+        },
+        {
+          label: "UX",
+          steps: [
+            "The home screen adapts based on how many profiles you have saved. New users see the birth info form right away. Returning users get a one-tap start button so they never re-enter their info. This sounds simple, but it required rethinking the entire page layout to handle both cases without feeling like two different apps.",
+            "The compatibility feature went through several iterations. The first version had separate menus for 'my compatibility' vs 'between two other people,' which confused testers. Simplified it to one flow: just pick any two people from your saved profiles.",
+            "Even small labeling choices mattered. The Korean word for the romantic relationship option went through three rounds. The first assumed the couple was already dating. The second excluded same-sex relationships. The final choice ('애정') covers all orientations and relationship stages.",
+            "Supported three languages (Korean, English, Chinese) from day one. Not just translated strings, but adapted UX patterns. Korean users expect different date formats, different honorifics in the AI responses, and different cultural framing of the same BaZi concepts.",
+          ],
+        },
+        {
+          label: "Engineering",
+          steps: [
+            "Chose Next.js 14 with Supabase because I needed to ship fast, alone. Server-side API routes let me hide the LLM API key and keep sensitive logic off the client. Supabase gave me auth, database, and row-level security without managing infrastructure. Deployed on Vercel for instant previews during iteration.",
+            "Solved a domain-specific accuracy problem that most apps get wrong. BaZi calculation depends on true solar time, not just timezone. A birth at 11:50 PM in western China (UTC+8) is actually a different solar hour than the same clock time in Shanghai, because the timezone spans 60 degrees of longitude. I implemented longitude-based correction using the city's coordinates, which can shift the hour pillar by up to 2 hours. Getting this wrong means the entire reading is based on the wrong chart.",
+            "Encrypted birth data with AES-256-GCM before storing in Supabase. Birth date, time, and location are genuinely sensitive personal information, and users trust the app with data they wouldn't share publicly.",
+            "Profiled the production build and found 1.9 MB of JavaScript being shipped to every visitor on page load. Traced it to three libraries: a 44,000-city timezone database (1.4 MB), the BaZi calculation engine (272 KB), and an HTML-to-canvas screenshot library (194 KB). All loaded on page mount despite only being needed on specific user actions.",
+            "Moved the city database to a server-side API route, eliminating 1.4 MB from the client entirely. Converted the calculator and screenshot library to dynamic imports triggered on user action. Replaced render-blocking Google Font @imports with next/font. Result: page JS went from 415 kB to 45.5 kB, an 89% reduction.",
+          ],
+        },
+      ],
+      outcome:
+        "Shipped a working product with multilingual support (Korean, English, Chinese), multi-profile management, compatibility readings, and a freemium payment flow. Unlike the existing apps which serve static readings, users can ask follow-up questions, dig into specific topics, and get answers that reference their actual chart elements.\n\nOn the technical side, reduced First Load JS from 512 kB to 143 kB through four targeted optimizations. The biggest win was recognizing that a 1.4 MB city database didn't belong on the client at all. That single architectural decision removed 73% of the bundle.\n\nThe product is live and being iterated on. Next steps are character-driven UI redesign and expanding the compatibility feature to group readings.",
+      learned:
+        "The biggest lesson was about knowing when you're looking at a real market versus a personal interest. I didn't start with an idea for an app. I started by noticing that people around me were already paying for something, and the existing products weren't that good. That's a very different starting point than 'I think this would be cool to build.'\n\nOn the technical side, I learned to measure before optimizing. I assumed the BaZi calculator would be the heaviest part of the bundle. It wasn't. A city timezone database I'd barely thought about was 73% of the problem. I only found it by reading the raw bytes of each webpack chunk, not by guessing.\n\nThe other thing that stuck with me: every static import is a bet that the user needs that code immediately. For most libraries, that bet is wrong. Aligning when code loads with when the user actually needs it is a simple principle, but applying it cut the bundle by 89%.",
+    },
+  },
+  {
     slug: "selah",
     type: "project",
     title: "Selah",
     subtitle: "AI-Powered CBT & Spiritual Wellness App",
     caseStudyTitle: "Building a mental health app for a community that already knew how to support each other",
     summary:
-      "Solo product, 0 → 90+ active users. React Native · Claude API · Supabase",
+      "Solo product, 0 → 90+ active users. React Native · LLM API · Supabase",
     role: "Product Owner & Builder",
     timeline: "2024 — Present",
     website: "https://selah-co.com",
-    tags: ["React Native + Expo", "Supabase / PostgreSQL", "Claude API", "AI-powered thought analysis", "Community-driven growth"],
+    tags: ["React Native + Expo", "Supabase / PostgreSQL", "LLM API", "AI-powered thought analysis", "Community-driven growth"],
     roleTags: ["Solo", "Product", "AI Integration", "User Research", "Community"],
     keyContribution: "0 → 90+ active users through community-driven growth. Preparing for launch.",
     thumbnail: {
@@ -66,7 +130,7 @@ export const projects: Project[] = [
       role:
         "Entirely solo — product strategy, AI integration, UX design, React Native development, user research, and community engagement. No team, no budget, no runway.",
       process: [
-        "Built an initial CBT tool using the Claude API to guide users through identifying cognitive distortions and reframing negative thoughts. Used it daily with my girlfriend as the first real user.",
+        "Built an initial CBT tool using the LLM API to guide users through identifying cognitive distortions and reframing negative thoughts. Used it daily with my girlfriend as the first real user.",
         "A Christian friend tried it and said he'd actively use it. That observation led to a hypothesis: targeting users at the intersection of mental health and faith would create a stronger, more specific product than a generic mental health tool.",
         "Repositioned the product. Added personalized Bible verse recommendations and redesigned the experience around both emotional and spiritual support.",
         "Embedded myself in church communities — observing how people share prayer requests and support each other weekly. Translated this into an anonymous prayer room where users could share and support each other online.",
